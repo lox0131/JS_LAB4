@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/node": "^16.4.6",
+    "@chakra-ui/react": "^1.6.5",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
     "dotenv": "^10.0.0",
+    "framer-motion": "^4",
     "mongodb": "^3.5.9",
     "mongoose": "^5.13.5",
     "next": "11.0.1",

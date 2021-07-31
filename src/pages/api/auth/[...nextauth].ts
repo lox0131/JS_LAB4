@@ -22,6 +22,9 @@ const options = {
       domain: process.env.AUTH0_DOMAIN,
     }),
   ],
+  pages: {
+    signIn: "/signin",
+  },
   database: process.env.DB_CONNECTION,
 };
 
