@@ -7,38 +7,73 @@ import {
   Input,
   Container,
   Stack,
+  useColorMode,
+  useColorModeValue
 } from "@chakra-ui/react";
-export default function SignIn({ providers, csrfToken  }) {
-  return (
-    <Container maxW="xl" centerContent>
 
-      <Box alignContent="center" justifyContent="center" marginTop={12}>
-        <Box className="email-form">
+export default function SignIn({ providers, csrfToken  }) {
+  const { toggleColorMode } = useColorMode()
+  const formbackground = useColorModeValue("grey.100")
+  const buttonbackground = useColorModeValue("white");
+  
+  return (
+    <Flex
+      height="100vh"
+      alignItems="center"
+      justifyContent="center"
+      background="blackAlpha.100"
+    >
+      <Container maxW="xl" centerContent background="white.100">
+        <Heading mb={6}>Log in </Heading>
+        <Box className="email-form" colorscheme="teal">
           <form method="post" action="/api/auth/signin/email">
             <Input name="csrfToken" type="hidden" defaultValue={csrfToken} />
             <label>
               Email address
-              <Input type="text" id="email" name="email" />
+              <Input
+                type="text"
+                id="email"
+                name="email"
+                variant="filled"
+                background={formbackground}
+                mb={3}
+              />
             </label>
-            <Button type="submit">Use your Email</Button>
+            <Button background={buttonbackground} type="submit">
+              Use your Email
+            </Button>
           </form>
+          <Stack
+            isInline
+            marginTop={12}
+            flexDirection="column"
+            alignItems="center"
+            mb={3}
+            variant="filled"
+          >
+            {Object.values(providers).map((provider) => {
+              if (provider.name === "Email") {
+                return;
+              }
+              return (
+                <Box key={provider.name}>
+                  <Button
+                    mb={3}
+                    background={buttonbackground}
+                    onClick={() => signIn(provider.id)}
+                  >
+                    Sign in with {provider.name}
+                  </Button>
+                </Box>
+              );
+            })}
+          </Stack>
         </Box>
-        <Stack isInline marginTop={12}>
-          {Object.values(providers).map((provider) => {
-            if (provider.name === "Email") {
-              return;
-            }
-            return (
-              <Box key={provider.name}>
-                <Button variant="outline" onClick={() => signIn(provider.id)}>
-                  Sign in with {provider.name}
-                </Button>
-              </Box>
-            );
-          })}
-        </Stack>
-      </Box>
-    </Container>
+        <Button background={buttonbackground} onClick={toggleColorMode}>
+          Toggle color mode
+        </Button>
+      </Container>
+    </Flex>
   );
 }
 
