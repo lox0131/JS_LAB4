@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "strictNullChecks": false,
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/Middleware/db.js", "src/pages/signin.jsx", "src/Components/Navbar.jsx", "src/Components/Logo.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/Middleware/db.js", "src/pages/signin.jsx", "src/Components/Navbar.jsx", "src/Components/Logo.jsx", "src/Components/MethodsSide.jsx", "src/pages/index.jsx"],
   "exclude": ["node_modules"]
 }

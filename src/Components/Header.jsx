@@ -17,9 +17,10 @@ const NavBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
+  const navBackground = useColorModeValue("		white", "#1A202C");
 
   return (
-    <NavBarContainer {...props}>
+    <NavBarContainer {...props} background={navBackground} >
       <Logo w="100px" />
       <MenuToggle toggle={toggle} isOpen={isOpen} />
       <MenuLinks isOpen={isOpen} />
@@ -92,11 +93,17 @@ const MenuLinks = ({ isOpen }) => {
         pt={[4, 4, 0, 0]}
         variant="filled"
       >
-        <MenuItem to="/">Home</MenuItem>
+        <Button size="sm" rounded="md">
+          <MenuItem to="/">Home</MenuItem>
+        </Button>
         {session && (
           <>
-            <MenuItem to="/personalMethods">Methods</MenuItem>
-            <MenuItem to="/discussion">Discussion</MenuItem>
+            <Button size="sm" rounded="md">
+              <MenuItem to="/personalMethods">Methods</MenuItem>
+            </Button>
+            <Button size="sm" rounded="md">
+              <MenuItem to="/discussion">Discussion</MenuItem>
+            </Button>
           </>
         )}
         <MenuItem to="/signin" isLast>
@@ -115,13 +122,14 @@ const MenuLinks = ({ isOpen }) => {
             </>
           )}
         </MenuItem>
-        <SunIcon
-          onClick={toggleColorMode}
-          variant="filled"
-          color={buttonbackground}
-          w={9}
-          h={7}
-        />
+        <Button size="sm" rounded="md">
+          <SunIcon
+            w={5}
+            h={6}
+            onClick={toggleColorMode}
+            color={buttonbackground}
+          />
+        </Button>
       </Stack>
     </Box>
   );

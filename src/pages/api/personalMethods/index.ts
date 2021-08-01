@@ -13,3 +13,5 @@ handler.post(async (req: NextApiRequest, res: NextApiResponse) => {
   const postedMethod = await user_methods.create(req.body);
   res.status(201).send(postedMethod);
 });
+
+export default handler

@@ -9,3 +9,5 @@ handler.delete(async (req: NextApiRequest, res: NextApiResponse) => {
   await user_methods.findByIdAndDelete(MethodID);
   res.status(204)
 });
+
+export default handler

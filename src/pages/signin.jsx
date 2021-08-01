@@ -52,7 +52,7 @@ export default function SignIn({ providers, csrfToken }) {
               }
               return (
                 <Box key={provider.name}>
-                  <Button
+                  <Button 
                     mb={3}
                     background={colors}
                     onClick={() => signIn(provider.id)}
@@ -64,7 +64,9 @@ export default function SignIn({ providers, csrfToken }) {
             })}
           </Stack>
         </Box>
-        <SunIcon onClick={toggleColorMode} variant="filled" w={9} h={7} />
+        <Button size="sm" rounded="md">
+          <SunIcon w={5} h={6} onClick={toggleColorMode} color={colors} />
+        </Button>
       </Container>
     </Flex>
   );

@@ -11,7 +11,7 @@ const User_MethodsSchema = new mongoose.Schema({
     required: true,
   },
   user_note: {
-    type: String
+    type: [String]
   }
 });
 
