@@ -8,24 +8,19 @@ import {
   Container,
   Stack,
   useColorMode,
-  useColorModeValue
+  useColorModeValue,
 } from "@chakra-ui/react";
+import { SunIcon } from "@chakra-ui/icons";
 
-export default function SignIn({ providers, csrfToken  }) {
-  const { toggleColorMode } = useColorMode()
-  const formbackground = useColorModeValue("grey.100")
-  const buttonbackground = useColorModeValue("white");
-  
+export default function SignIn({ providers, csrfToken }) {
+  const { toggleColorMode } = useColorMode();
+  const colors = useColorModeValue("grey.100", "grey.700");
+
   return (
-    <Flex
-      height="100vh"
-      alignItems="center"
-      justifyContent="center"
-      background="blackAlpha.100"
-    >
-      <Container maxW="xl" centerContent background="white.100">
-        <Heading mb={6}>Log in </Heading>
-        <Box className="email-form" colorscheme="teal">
+    <Flex height="100vh" alignItems="center" justifyContent="center">
+      <Container maxW="xl" centerContent>
+        <Heading mb={6}>Log in with email</Heading>
+        <Box className="email-form">
           <form method="post" action="/api/auth/signin/email">
             <Input name="csrfToken" type="hidden" defaultValue={csrfToken} />
             <label>
@@ -35,11 +30,11 @@ export default function SignIn({ providers, csrfToken  }) {
                 id="email"
                 name="email"
                 variant="filled"
-                background={formbackground}
+                color={colors}
                 mb={3}
               />
             </label>
-            <Button background={buttonbackground} type="submit">
+            <Button background={colors} type="submit">
               Use your Email
             </Button>
           </form>
@@ -59,19 +54,17 @@ export default function SignIn({ providers, csrfToken  }) {
                 <Box key={provider.name}>
                   <Button
                     mb={3}
-                    background={buttonbackground}
+                    background={colors}
                     onClick={() => signIn(provider.id)}
                   >
-                    Sign in with {provider.name}
+                    Log in with {provider.name}
                   </Button>
                 </Box>
               );
             })}
           </Stack>
         </Box>
-        <Button background={buttonbackground} onClick={toggleColorMode}>
-          Toggle color mode
-        </Button>
+        <SunIcon onClick={toggleColorMode} variant="filled" w={9} h={7} />
       </Container>
     </Flex>
   );
