@@ -5,7 +5,7 @@ const PersonalSide = ( { methods } ) => {
     const [saved, setSaved] = useState([]);
     
     useEffect(() => {
-
+        
     }, [])
 
     return (

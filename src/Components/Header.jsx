@@ -15,17 +15,15 @@ import { FaMoon, FaSun } from "react-icons/fa";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";
 
-const NavBar = (props) => {
+const NavBar = ({ filterMethods }) => {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggle = () => setIsOpen(!isOpen);
   const navBackground = useColorModeValue("		white", "#1A202C");
-
   return (
-    <NavBarContainer {...props} background={navBackground}>
+    <NavBarContainer background={navBackground}>
       <Logo w="100px" />
       <MenuToggle toggle={toggle} isOpen={isOpen} />
-      <MenuLinks isOpen={isOpen} />
+      <MenuLinks isOpen={isOpen} filterMethods={filterMethods} />
     </NavBarContainer>
   );
 };
@@ -80,7 +78,7 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
   );
 };
 
-const MenuLinks = ({ isOpen }) => {
+const MenuLinks = ({ isOpen, filterMethods }) => {
   const [session, loading] = useSession();
   const buttonbackground = useColorModeValue("grey.100", "grey.700");
   const { toggleColorMode } = useColorMode();
@@ -130,7 +128,7 @@ const MenuLinks = ({ isOpen }) => {
           onClick={toggleColorMode}
           color={buttonbackground}
         />
-        <SearchBar />
+        <SearchBar filterMethods={filterMethods} />
       </Stack>
     </Box>
   );

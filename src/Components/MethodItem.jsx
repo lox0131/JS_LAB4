@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading, Text, Box, VStack, Container, Flex, useMediaQuery } from "@chakra-ui/react";
+import { Heading, Text, Box, VStack, useMediaQuery } from "@chakra-ui/react";
 
 const MethodItem = ({ method }) => {
   const [isLargerThan] = useMediaQuery("(min-width:765px)")
@@ -10,7 +10,7 @@ const MethodItem = ({ method }) => {
             shadow="md"
             borderWidth="1px"
             borderRadius="10px"
-            maxW={isLargerThan ? "700px" : "200px"}
+            maxW={isLargerThan ? "700px" : "300px"}
           >
             <Heading as="h6" size="md">
               {method.categorie}.prototype.{method.title}
