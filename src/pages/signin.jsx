@@ -9,12 +9,14 @@ import {
   Stack,
   useColorMode,
   useColorModeValue,
+  IconButton,
 } from "@chakra-ui/react";
-import { SunIcon } from "@chakra-ui/icons";
+import { FaMoon, FaSun } from "react-icons/fa";
 
 export default function SignIn({ providers, csrfToken }) {
   const { toggleColorMode } = useColorMode();
   const colors = useColorModeValue("grey.100", "grey.700");
+  const SwitchIcon = useColorModeValue(FaMoon, FaSun)
 
   return (
     <Flex height="100vh" alignItems="center" justifyContent="center">
@@ -64,9 +66,7 @@ export default function SignIn({ providers, csrfToken }) {
             })}
           </Stack>
         </Box>
-        <Button size="sm" rounded="md">
-          <SunIcon w={5} h={6} onClick={toggleColorMode} color={colors} />
-        </Button>
+          <IconButton icon={<SwitchIcon />} size="md" fontSize="lg" onClick={toggleColorMode} color={colors} />
       </Container>
     </Flex>
   );

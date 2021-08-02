@@ -7,10 +7,11 @@ import {
   Stack,
   useColorModeValue,
   useColorMode,
+  IconButton,
 } from "@chakra-ui/react";
 import { signOut, useSession } from "next-auth/client";
 import { useState } from "react";
-import { SunIcon } from "@chakra-ui/icons";
+import { FaMoon, FaSun } from "react-icons/fa";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";
 
@@ -83,6 +84,7 @@ const MenuLinks = ({ isOpen }) => {
   const [session, loading] = useSession();
   const buttonbackground = useColorModeValue("grey.100", "grey.700");
   const { toggleColorMode } = useColorMode();
+  const SwitchIcon = useColorModeValue(FaMoon, FaSun);
   return (
     <Box
       display={{ base: isOpen ? "block" : "none", md: "block" }}
@@ -121,14 +123,13 @@ const MenuLinks = ({ isOpen }) => {
             </>
           )}
         </MenuItem>
-        <Button size="sm" rounded="md">
-          <SunIcon
-            w={5}
-            h={6}
-            onClick={toggleColorMode}
-            color={buttonbackground}
-          />
-        </Button>
+        <IconButton
+          icon={<SwitchIcon />}
+          size="sm"
+          fontSize="lg"
+          onClick={toggleColorMode}
+          color={buttonbackground}
+        />
         <SearchBar />
       </Stack>
     </Box>

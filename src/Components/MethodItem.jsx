@@ -1,16 +1,16 @@
 import React from 'react'
-import { Heading, Text, Box, VStack, Container } from "@chakra-ui/react";
+import { Heading, Text, Box, VStack, Container, Flex, useMediaQuery } from "@chakra-ui/react";
 
 const MethodItem = ({ method }) => {
+  const [isLargerThan] = useMediaQuery("(min-width:765px)")
     return (
-      <Container padding="10px">
-        <VStack key={method._id}>
+        <VStack key={method._id} padding="10px">
           <Box
             p={5}
             shadow="md"
             borderWidth="1px"
             borderRadius="10px"
-            maxW="300px"
+            maxW={isLargerThan ? "700px" : "200px"}
           >
             <Heading as="h6" size="md">
               {method.categorie}.prototype.{method.title}
@@ -19,7 +19,6 @@ const MethodItem = ({ method }) => {
             <Text fontSize="sm">Example : {method.example}</Text>
           </Box>
         </VStack>
-      </Container>
     );
 }
 

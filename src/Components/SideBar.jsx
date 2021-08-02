@@ -1,10 +1,13 @@
+import { Box, Heading } from '@chakra-ui/react'
 import React from 'react'
 
 const SideBar = () => {
     return (
-        <div>
-            
-        </div>
+        <>
+     <Box padding="24px" >
+        <Heading size="md" padding="24px">Navigate</Heading>
+     </Box>
+     </>
     )
 }
 

@@ -4,7 +4,7 @@ export async function dbConnect() {
   if (mongoose.connection.readyState >= 1) return;
 
   return mongoose.connect(process.env.DB_CONNECTION, {
-    newUrlParser: true,
+    useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: true,
   });
