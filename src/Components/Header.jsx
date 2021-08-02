@@ -12,6 +12,7 @@ import { signOut, useSession } from "next-auth/client";
 import { useState } from "react";
 import { SunIcon } from "@chakra-ui/icons";
 import Logo from "./Logo";
+import SearchBar from "./SearchBar";
 
 const NavBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +21,7 @@ const NavBar = (props) => {
   const navBackground = useColorModeValue("		white", "#1A202C");
 
   return (
-    <NavBarContainer {...props} background={navBackground} >
+    <NavBarContainer {...props} background={navBackground}>
       <Logo w="100px" />
       <MenuToggle toggle={toggle} isOpen={isOpen} />
       <MenuLinks isOpen={isOpen} />
@@ -29,32 +30,34 @@ const NavBar = (props) => {
 };
 
 const CloseIcon = () => {
-    const buttonbackground = useColorModeValue("black", "white");
-    return (
-      <svg width="24" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-        <title>Close</title>
-        <path
-          fill={buttonbackground}
-          d="M9.00023 7.58599L13.9502 2.63599L15.3642 4.04999L10.4142 8.99999L15.3642 13.95L13.9502 15.364L9.00023 10.414L4.05023 15.364L2.63623 13.95L7.58623 8.99999L2.63623 4.04999L4.05023 2.63599L9.00023 7.58599Z"
-        />
-      </svg>
-    );};
+  const buttonbackground = useColorModeValue("black", "white");
+  return (
+    <svg width="24" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+      <title>Close</title>
+      <path
+        fill={buttonbackground}
+        d="M9.00023 7.58599L13.9502 2.63599L15.3642 4.04999L10.4142 8.99999L15.3642 13.95L13.9502 15.364L9.00023 10.414L4.05023 15.364L2.63623 13.95L7.58623 8.99999L2.63623 4.04999L4.05023 2.63599L9.00023 7.58599Z"
+      />
+    </svg>
+  );
+};
 
 const MenuIcon = () => {
-    const buttonbackground = useColorModeValue("black", "white");
-    return (
-<Box>
-  <svg
-    width="24px"
-    viewBox="0 0 20 20"
-    xmlns="http://www.w3.org/2000/svg"
-    fill={buttonbackground}
-  >
-    <title>Menu</title>
-    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-  </svg>
-  </Box>
-)};
+  const buttonbackground = useColorModeValue("black", "white");
+  return (
+    <Box>
+      <svg
+        width="24px"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+        fill={buttonbackground}
+      >
+        <title>Menu</title>
+        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+      </svg>
+    </Box>
+  );
+};
 
 const MenuToggle = ({ toggle, isOpen }) => {
   return (
@@ -66,7 +69,7 @@ const MenuToggle = ({ toggle, isOpen }) => {
 
 const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
   return (
-    <Box variant="filled" >
+    <Box variant="filled">
       <Link href={to}>
         <Text display="block" {...rest}>
           {children}
@@ -93,17 +96,13 @@ const MenuLinks = ({ isOpen }) => {
         pt={[4, 4, 0, 0]}
         variant="filled"
       >
-        <Button size="sm" rounded="md">
-          <MenuItem to="/">Home</MenuItem>
-        </Button>
+        <MenuItem to="/">Home</MenuItem>
+
         {session && (
           <>
-            <Button size="sm" rounded="md">
-              <MenuItem to="/personalMethods">Methods</MenuItem>
-            </Button>
-            <Button size="sm" rounded="md">
-              <MenuItem to="/discussion">Discussion</MenuItem>
-            </Button>
+            <MenuItem to="/personalMethods">Methods</MenuItem>
+
+            <MenuItem to="/discussion">Discussion</MenuItem>
           </>
         )}
         <MenuItem to="/signin" isLast>
@@ -130,6 +129,7 @@ const MenuLinks = ({ isOpen }) => {
             color={buttonbackground}
           />
         </Button>
+        <SearchBar />
       </Stack>
     </Box>
   );

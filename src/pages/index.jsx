@@ -1,13 +1,13 @@
 import { signIn, signOut, useSession } from "next-auth/client";
-import styles from "../styles/Home.module.css";
 import Header from "../Components/Header"
 import MethodSide from "../Components/MethodsSide"
-import { Box } from "@chakra-ui/layout";
+import { Box, Heading } from "@chakra-ui/layout";
+import Sidebar from "../Components/SideBar";
 
 export default function Home() {
   const [session, loading] = useSession();
   return (
-    <Box >
+    <Box>
       <Header sx={{ position: "sticky", top: "0" }} />
       <MethodSide />
       {/* <div className={styles.container}>
