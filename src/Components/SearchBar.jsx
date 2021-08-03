@@ -10,14 +10,12 @@ import React from 'react'
 
 const SearchBar = ({ filterMethods }) => {
     return (
-      <div>
         <Container maxW="xs" centerContent >
           <InputGroup>
             <InputLeftAddon children={<SearchIcon color="gray.300" />} />
-            <Input type="tel" placeholder="Search"  onChange={e => filterMethods(e.target.value)}/>
+            <Input type="tel" placeholder="Search for methods"  onChange={e => filterMethods(e.target.value)}/>
           </InputGroup>
         </Container>
-      </div>
     );
 }
 

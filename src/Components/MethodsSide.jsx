@@ -1,22 +1,19 @@
-import { getMethods } from "../services/api";
-import { useState, useEffect, useContext } from "react";
-import PersonalSide from "./PersonalSide";
+import { useState, useEffect } from "react";
 import MethodItem from "./MethodItem";
 import { Box, Flex, useMediaQuery } from "@chakra-ui/react";
+import { Method } from "../context/MethodContext";
 import SideBar from "./SideBar";
-import Header from "./Header"
-import SearchBar from "./SearchBar";
+import Header from "./Header";
+import { v4 as uuidv4 } from 'uuid'
 
 const MethodsSide = () => {
-  const [methods, setMethods] = useState([]);
-  const [filteredMethods, setFilteredMethods] = useState([]);
+  const { methods } = Method();
 
   useEffect(() => {
-    getMethods().then(
-      (newMethods) => setMethods(newMethods),
-    );
-    getMethods().then((newMethods) => setFilteredMethods(newMethods))
-  }, []);
+    setFilteredMethods(methods);
+  }, [methods]);
+
+  const [filteredMethods, setFilteredMethods] = useState(methods);
 
   const filterMethods = (value) => {
     const result = methods?.filter((method) =>
@@ -29,15 +26,14 @@ const MethodsSide = () => {
 
   return (
     <>
-      <Header sx={{ position: "sticky", top: "0" }} filterMethods={filterMethods} />
-      <Flex justifyContent="center">
+      <Header filterMethods={filterMethods} />
+      <Flex justifyContent="center" overscrollBehavior="smooth">
         {isLargerThan ? <SideBar /> : <></>}
-        <Box>
-          {filteredMethods.map((method) => {
-            return <MethodItem method={method} />;
-          })}
-          <PersonalSide methods={methods} />
-        </Box>
+          <Box>
+            {filteredMethods.map((method) => (
+              <MethodItem method={method} key={uuidv4()} />
+            ))}
+          </Box>
       </Flex>
     </>
   );

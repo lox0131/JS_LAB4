@@ -20,7 +20,10 @@ const NavBar = ({ filterMethods }) => {
   const toggle = () => setIsOpen(!isOpen);
   const navBackground = useColorModeValue("		white", "#1A202C");
   return (
-    <NavBarContainer background={navBackground}>
+    <NavBarContainer
+      background={navBackground}
+      sx={{ position: "sticky", top: "0" }}
+    >
       <Logo w="100px" />
       <MenuToggle toggle={toggle} isOpen={isOpen} />
       <MenuLinks isOpen={isOpen} filterMethods={filterMethods} />

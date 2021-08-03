@@ -19,6 +19,7 @@ const options = {
   ],
   pages: {
     signIn: "/signin",
+    verifyRequest: '/verify-request',
   },
   database: process.env.DB_CONNECTION,
 };

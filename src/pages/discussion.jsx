@@ -1,5 +1,4 @@
-
-const personalMethods = () => {
+const disscusion = () => {
     return (
         <div>
             
@@ -7,4 +6,5 @@ const personalMethods = () => {
     )
 }
 
-export default personalMethods
+export default disscusion
+ 
