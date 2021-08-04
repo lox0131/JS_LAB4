@@ -1,18 +1,13 @@
-import { ObjectID } from "mongodb";
 import * as mongoose from "mongoose";
 
 const User_MethodsSchema = new mongoose.Schema({
   userID: {
-    type: ObjectID,
+    type: String,
     required: true,
   },
-  methodsID: {
-    type: ObjectID,
-    required: true,
+  methods: {
+    type: Array,
   },
-  user_note: {
-    type: [String]
-  }
 });
 
 const Users_methods =

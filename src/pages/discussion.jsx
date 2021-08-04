@@ -1,8 +1,14 @@
+import Reddit from "../Components/Reddit"
+import Header from "../Components/Header"
+import { Container, Flex } from "@chakra-ui/layout"
 const disscusion = () => {
     return (
-        <div>
-            
-        </div>
+        <>
+    <Header />
+     <Flex alignItems="center" justifyContent="center" flexDirection="column">
+       <Reddit />
+       </Flex>
+       </>
     )
 }
 

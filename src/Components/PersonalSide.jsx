@@ -1,65 +1,46 @@
 import { useEffect, useState } from "react";
-import { getSaved, postSaved, deleteEvent } from "../services/api";
 import { Method } from "../context/MethodContext";
 import Header from "./Header";
-import { signIn, useSession } from "next-auth/client";
+import { useSession } from "next-auth/client";
 import styles from "../styles/Home.module.css";
-import { Heading, Button, Flex, useMediaQuery, Box } from "@chakra-ui/react";
+import { Heading, Button, Flex, useMediaQuery, Box, Container } from "@chakra-ui/react";
 import PersonalBar from './PersonalBar'
+import PersonalItem from "./PersonalItem"
 import { v4 as uuidv4 } from "uuid";
 
 const PersonalSide = () => {
-  const [ session, loading ] = useSession();
   const { methods } = Method();
-   const userID = session && session.accessToken;
-  const [ saved, setSaved ] = useState({
-      "userID": userID,
-      "methodsID": '',
-  });
+  const session = useSession()
+  const [ saved, setSaved ] = useState([])
   const [ isLargerThan ] = useMediaQuery("(min-width:765px)");
   const [ filteredSaved, setFilteredSaved ] = useState([methods])
+  const [ newfilteredSaved, setNewfilteredSaved] = useState([])
   
    useEffect(() => {
      setFilteredSaved(methods);
    }, [methods]);
 
-    useEffect(() => {
-      getSaved().then((res) => setSaved(res.forEach(user_method => {
-          if (user_method === userID) return [user_method.methodsID]}
-      )));
-    }, []);
-    console.log(saved)
-  
-  const addtoDB = (user_method) => {
-    saved
-  }
-  
+
   const filterMethods = value => {
     const result = methods?.filter((method) =>
-      method.title.toLowerCase().includes(value)
-    );
+      method.title.toLowerCase().includes(value));
+    const result2 = saved?.filter(saved => saved.title.toLowerCase().includes(value))
     setFilteredSaved(result);
+    setNewfilteredSaved(result2);
   };
 
-  const addToSavedDB = method => {
-    postSaved(method).then(res => setSaved(oldSaved => [...oldSaved, res]))
+  const addtoSaved = (method) => {
+    if(!saved.includes(method)) {
+      setSaved([...saved, method])
+      setNewfilteredSaved([...newfilteredSaved, method])
+    } else removeFromSaved(method);
   }
 
-  const addtoSaved = method => {
-      if(!saved.includes(method)) {
-          setSaved([...saved, method])
-          setFilteredSaved([...filteredSaved, method])
-      }
+  const removeFromSaved = (method) => {
+    setSaved(saved.filter(savedMethod => savedMethod !== method))
+    setNewfilteredSaved(newfilteredSaved.filter(savedMethod => savedMethod !== method))
   }
 
-  const removeFromSavedDB = method => {
-      deleteEvent(method._id).then(res => {
-          if (res.status === 204) {
-              setSaved(saved.filter((savedMethod) => savedMethod._id !== method._id));
-              setFilteredSaved(filteredSaved.filter(savedMethod => savedMethod._id !== method._id));
-          }
-      })
-  }
 
   return (
     <>
@@ -77,15 +58,23 @@ const PersonalSide = () => {
           <Flex>
             {isLargerThan ? (
               <PersonalBar
-                sx={{ left: "0" }}
                 filteredSaved={filteredSaved}
-                saved={saved}
+                newfilteredSaved={newfilteredSaved}
+                addtoSaved={addtoSaved}
                 key={uuidv4()}
               />
             ) : (
               <></>
             )}
-            <Box></Box>
+            <Container justifyContent="center">
+              {newfilteredSaved.map((method) => (
+                <PersonalItem
+                  method={method}
+                  key={uuidv4()}
+                  addtoSaved={addtoSaved}
+                />
+              ))}
+            </Container>
           </Flex>
         </>
       )}

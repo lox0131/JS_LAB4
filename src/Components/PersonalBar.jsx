@@ -1,13 +1,22 @@
-import { List, Box, VStack, ListItem, Heading, filter} from "@chakra-ui/react";
+import {
+  List,
+  Flex,
+  VStack,
+  ListItem,
+  Heading,
+  IconButton,
+} from "@chakra-ui/react";
 
-const PersonalBar = ({ filteredSaved }) => {
+import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
+
+const PersonalBar = ({ filteredSaved, addtoSaved, newfilteredSaved }) => {
   return (
     <VStack padding="1px">
       <Heading as="h4" size="md">
         Choose your methods
       </Heading>
       {filteredSaved.map((method) => (
-        <Box
+        <Flex
           p={3}
           shadow="md"
           borderWidth="1px"
@@ -16,11 +25,35 @@ const PersonalBar = ({ filteredSaved }) => {
           padding="15px"
         >
           <List key={method._id}>
-            <ListItem as="h6" size="md" maxW="200px" key={method._id}>
+            <ListItem
+              as="h6"
+              size="md"
+              maxW="300px"
+              key={method._id}
+              padding="10px"
+              maxW="200px"
+            >
               {method.categorie}.prototype.{method.title}
+              {newfilteredSaved.includes(method) ? (
+                <IconButton
+                  icon={<CloseIcon />}
+                  position="-webkit-sticky"
+                  type="submit"
+                  size="sm"
+                  onClick={() => addtoSaved(method)}
+                ></IconButton>
+              ) : (
+                <IconButton
+                  icon={<CheckIcon />}
+                  position="-webkit-sticky"
+                  type="submit"
+                  size="sm"
+                  onClick={() => addtoSaved(method)}
+                ></IconButton>
+              )}
             </ListItem>
           </List>
-        </Box>
+        </Flex>
       ))}
     </VStack>
   );

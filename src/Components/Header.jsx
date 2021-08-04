@@ -106,6 +106,7 @@ const MenuLinks = ({ isOpen, filterMethods }) => {
             <MenuItem to="/personalMethods">Methods</MenuItem>
 
             <MenuItem to="/discussion">Discussion</MenuItem>
+            
           </>
         )}
         <MenuItem to="/signin" isLast>

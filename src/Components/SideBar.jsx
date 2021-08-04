@@ -1,12 +1,15 @@
-import { Box, Heading } from '@chakra-ui/react'
+import { VStack, Heading, Link } from '@chakra-ui/react'
 import React from 'react'
 
 const SideBar = () => {
     return (
-     <Box padding="24px" >
-        <Heading size="md" padding="100px">Navigate</Heading>
-     </Box>
-    )
+      <VStack padding="24px">
+        <Heading size="md" padding="10px">
+          Total Categories
+        </Heading>
+        <Link href="#section1">Array Methods</Link>
+      </VStack>
+    );
 }
 
 export default SideBar

@@ -28,7 +28,7 @@ const MethodsSide = () => {
     <>
       <Header filterMethods={filterMethods} />
       <Flex justifyContent="center" overscrollBehavior="smooth">
-        {isLargerThan ? <SideBar /> : <></>}
+        {isLargerThan ? <SideBar  /> : <></>}
           <Box>
             {filteredMethods.map((method) => (
               <MethodItem method={method} key={uuidv4()} />

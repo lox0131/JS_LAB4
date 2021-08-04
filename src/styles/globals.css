@@ -15,6 +15,14 @@ a {
   box-sizing: border-box;
 }
 
+section1 {
+  top: 40px
+}
+
+section2 {
+
+}
+
 ::-webkit-scrollbar-thumb {
   background-color: #d6dee1;
 }
