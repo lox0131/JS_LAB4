@@ -1,4 +1,4 @@
-# Wizard
+# JSLab
 
 JSLab is an app that lets users view, store add notes to help remember their most used Javascript methods
 
